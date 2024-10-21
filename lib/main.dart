@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mealapp/widgets/tabs.dart';
+
+import 'package:mealapp/Screens/tabs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Meal App",
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            brightness: Brightness.dark, seedColor: Colors.black),
-        useMaterial3: true,
-      ),
-      home: const Tabs(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: "Meal App",
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              brightness: Brightness.dark, seedColor: Colors.black),
+          useMaterial3: true,
+        ),
+        home: Tabs());
   }
 }

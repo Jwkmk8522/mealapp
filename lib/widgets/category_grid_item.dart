@@ -14,7 +14,7 @@ class CategoryGridItem extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             gradient: LinearGradient(
               colors: [
                 raja.color.withOpacity(0.8),
