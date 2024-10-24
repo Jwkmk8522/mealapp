@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mealapp/Screens/Smeal.dart';
 import 'package:mealapp/data/dummy_data.dart';
 
 import 'package:mealapp/widgets/category_grid_item.dart';
+
+import '../models/Meal.dart';
+import '../models/category.dart';
 
 class categories extends StatefulWidget {
   const categories({super.key});
@@ -13,7 +17,8 @@ class categories extends StatefulWidget {
 class _categoriesState extends State<categories> with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<Offset> gridslideanimate;
-
+  final List<Meal> meals = dummyMeals;
+  final List<Category> category = availableCategories;
   @override
   void initState() {
     controller =
@@ -23,6 +28,18 @@ class _categoriesState extends State<categories> with TickerProviderStateMixin {
 
     super.initState();
     controller.forward();
+  }
+
+  void selectcategory(context, Category category) {
+    final filtermeal =
+        meals.where((meal) => meal.categories.contains(category.id)).toList();
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Smeal(
+                  meals: filtermeal,
+                  title: category.title,
+                )));
   }
 
   @override
@@ -40,7 +57,11 @@ class _categoriesState extends State<categories> with TickerProviderStateMixin {
             crossAxisCount: 2, crossAxisSpacing: 20, mainAxisSpacing: 20),
         children: [
           for (final raja1 in availableCategories)
-            CategoryGridItem(raja: raja1),
+            CategoryGridItem(
+                raja: raja1,
+                onselectcategory: () {
+                  selectcategory(context, raja1);
+                }),
         ],
       ),
     );
